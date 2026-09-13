@@ -27,4 +27,4 @@ def analyze_vulnerability(target_url):
         print(f"Error: {e}")
 
 if _name_ == "_main_":
-    analyze_vulnerability("http://example.com")
+    analyze_vulnerability("http://testfire.net")
