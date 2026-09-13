@@ -6,7 +6,7 @@ os.environ["GEMINI_API_KEY"] = os.environ.get("GEMINI_API_KEY")
 
 def analyze_vulnerability(target_url):
     if not os.environ.get("GEMINI_API_KEY"):
-        print("❌ error: GEMINI_API_KEY is not set! please check GitHub Secrets")
+        print("❌ एरर: GEMINI_API_KEY सेट नहीं है! कृपया GitHub Secrets चेक करें।")
         return
         
     client = genai.Client()
@@ -18,6 +18,7 @@ def analyze_vulnerability(target_url):
     user_prompt = f"Develop a preliminary vulnerability testing plan for the target URL: {target_url}"
     
     try:
+        # हमने यहाँ बिल्कुल सटीक 2.0-flash मॉडल सेट किया है
         response = client.models.generate_content(
             model='gemini-2.0-flash',
             contents=user_prompt,
@@ -31,6 +32,5 @@ def analyze_vulnerability(target_url):
     except Exception as e:
         print(f"Error: {e}")
 
-# यहाँ ध्यान दें: name और main दोनों के आगे और पीछे दो-दो अंडरस्कोर (__) हैं
 if __name__ == "__main__":
     analyze_vulnerability("http://testfire.net")
