@@ -5,9 +5,8 @@ from google.genai import types
 os.environ["GEMINI_API_KEY"] = os.environ.get("GEMINI_API_KEY")
 
 def analyze_vulnerability(target_url):
-    # चेक करना कि चाबी मिली या नहीं
     if not os.environ.get("GEMINI_API_KEY"):
-        print("❌ error: GEMINI_API_KEY is not set! please check GitHub Secrets")
+        print("❌ एरर: GEMINI_API_KEY सेट नहीं है! कृपया GitHub Secrets चेक करें।")
         return
         
     client = genai.Client()
@@ -32,6 +31,6 @@ def analyze_vulnerability(target_url):
     except Exception as e:
         print(f"Error: {e}")
 
-if _name_ == "_main_":
-
+# यहाँ ध्यान दें: name और main दोनों के आगे और पीछे दो-दो अंडरस्कोर (__) हैं
+if __name__ == "__main__":
     analyze_vulnerability("http://testfire.net")
