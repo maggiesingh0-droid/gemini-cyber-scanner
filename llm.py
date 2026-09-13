@@ -2,9 +2,14 @@ import os
 from google import genai
 from google.genai import types
 
-os.environ["GEMINI_API_KEY"] = os.environ.get("GEMINI_API_KEY", "YOUR_KEY_HERE")
+os.environ["GEMINI_API_KEY"] = os.environ.get("GEMINI_API_KEY")
 
 def analyze_vulnerability(target_url):
+    # चेक करना कि चाबी मिली या नहीं
+    if not os.environ.get("GEMINI_API_KEY"):
+        print("❌ error: GEMINI_API_KEY is not set! please check GitHub Secrets")
+        return
+        
     client = genai.Client()
     system_instruction = (
         "You are an elite Cybersecurity Expert with an extensive knowledge graph of "
@@ -22,9 +27,11 @@ def analyze_vulnerability(target_url):
                 temperature=0.3,
             ),
         )
+        print("🛡️ --- CYBERSECURITY ASSESSMENT PLAN --- 🛡️\n")
         print(response.text)
     except Exception as e:
         print(f"Error: {e}")
 
 if _name_ == "_main_":
+
     analyze_vulnerability("http://testfire.net")
