@@ -24,4 +24,7 @@ jobs:
     - name: Run Cyber Test Script
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      run: python llm.py
+     
+      run: |
+        sed -i "s/'gemini-2.5-flash'/'gemini-2.0-flash'/g" cyber_test.py
+        python llm.py
