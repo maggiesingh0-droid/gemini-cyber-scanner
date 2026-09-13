@@ -1,7 +1,7 @@
 name: Execute Cyber Vulnerability Test
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   run-security-script:
@@ -18,11 +18,10 @@ jobs:
 
     - name: Install Google GenAI Library
       run: |
-        python -minstall --upgrade pip
+        python -m pip install --upgrade pip
         pip install google-genai
 
     - name: Run Cyber Test Script
       env:
-   
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: python llm.py
