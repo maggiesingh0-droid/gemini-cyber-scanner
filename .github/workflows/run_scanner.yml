@@ -26,5 +26,5 @@ jobs:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
      
       run: |
-        sed -i "s/'gemini-2.5-flash'/'gemini-2.0-flash'/g" cyber_test.py
+        sed -i "s/'gemini-2.5-flash'/'gemini-2.0-flash'/g" llm.py
         python llm.py
