@@ -6,7 +6,7 @@ os.environ["GEMINI_API_KEY"] = os.environ.get("GEMINI_API_KEY")
 
 def analyze_vulnerability(target_url):
     if not os.environ.get("GEMINI_API_KEY"):
-        print("❌ एरर: GEMINI_API_KEY सेट नहीं है! कृपया GitHub Secrets चेक करें।")
+        print("❌ error: GEMINI_API_KEY is not set! please check GitHub Secrets")
         return
         
     client = genai.Client()
@@ -19,7 +19,7 @@ def analyze_vulnerability(target_url):
     
     try:
         response = client.models.generate_content(
-            model='gemini-2.5-flash',
+            model='gemini-2.0-flash',
             contents=user_prompt,
             config=types.GenerateContentConfig(
                 system_instruction=system_instruction,
